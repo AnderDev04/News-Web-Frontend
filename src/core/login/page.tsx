@@ -4,6 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import useSignIn from 'react-auth-kit/hooks/useSignIn';
 import { UserType } from "./types";
+import { LoginAPI } from "../api/auth";
 
 // Componente para el incio de sesión
 export default function Login() {
@@ -39,7 +40,7 @@ export default function Login() {
         const User = data;
         setLoading(true);
         try {
-            const res = await loginUser(User);
+            const res = await LoginAPI(User);
             if (res) {
                 signIn({
                     auth: {
@@ -47,6 +48,7 @@ export default function Login() {
                         type: "Bearer"
                     }
                 });
+                console.log(res)
                 localStorage.setItem('AuthToken', res.access);
                 AlertSignInStatus('Success!')
                 setTimeout(() => {
@@ -63,10 +65,10 @@ export default function Login() {
         }
     };
 
-    const notify = () => toast.error("Email is required");
+    const notify = () => toast.error("Username is required");
 
     useEffect(() => {
-        if (errors.email?.type === "required" ) {
+        if (errors.username?.type === "required" ) {
             notify();
         }
     }, [errors.email]);
@@ -77,15 +79,15 @@ export default function Login() {
             <section className="absolute top-0 z-[-2] h-screen w-full  bg-neutral-200   items-center p-10 justify-center flex ">
                 <form onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)} className="flex flex-col gap-2">
                     <img src="https://cdn-icons-png.flaticon.com/512/1077/1077012.png" className="w-20 h-20 mx-auto"
-                     alt="" />
+                     alt="a" />
                     <h1 className="text-2xl mt-5 text-black font-bold">
                         Iniciar sesión
                     </h1>
                     <p className="text-gray-700 mb-2 font-semibold"> 
                         Ingresa tus credenciales para acceder a la plataforma
                     </p>
-                    <label className="flex flex-col gap-2 w-full text-black"> Email:
-                        <input type="email" {...register("email", { required: true })} autoComplete="email" className="rounded-lg px-2 py-2 focus:outline-blue-900 focus:text-gray-700 bg-transparent border border-gray-400" placeholder="Ingrese su email" />
+                    <label className="flex flex-col gap-2 w-full text-black"> Username:
+                        <input type="text" {...register("username", { required: true })} autoComplete="username" className="rounded-lg px-2 py-2 focus:outline-blue-900 focus:text-gray-700 bg-transparent border border-gray-400" placeholder="Ingrese su username" />
                     </label>
                     <label className="flex flex-col gap-2 w-full text-black">  Contraseña:
                         <input type="password" {...register("password", { required: true })} autoComplete="password" className="rounded-lg px-2 py-2 focus:outline-blue-900 focus:text-gray-700 bg-transparent border border-gray-400" placeholder="Ingrese su password"/>

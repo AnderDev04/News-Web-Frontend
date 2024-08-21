@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import RequireAuth from "@auth-kit/react-router/RequireAuth";
 import { Suspense } from "react";
 import { QueryClientProvider,QueryClient } from '@tanstack/react-query'
 import LoginPage from "./core/login/page";
 import HomePage from "./core/news/page";
+import DetailPage from "./core/news/detail/page";
 const queryClient = new QueryClient()
 
 function App() {
@@ -14,6 +14,7 @@ function App() {
           <Routes>
             <Route path={"/login"} element={<LoginPage />} />
             <Route path={"/"} element={<HomePage />} />
+            <Route path={"/detalle/:id/"} element={<DetailPage />} />
           </Routes>
         </Suspense>
       </Router>

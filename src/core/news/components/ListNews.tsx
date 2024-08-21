@@ -14,7 +14,7 @@ export default function ListNews() {
         <div className="px-20 mt-10">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {newsData && newsData?.map((news:any) => (
-                    <Link to={'#'} key={news.id} className="border-l border-gray-400 flex justify-between  items-center overflow-hidden pl-5">
+                    <Link to={`detalle/${news.id}/`} key={news.id} className="border-l border-gray-400 flex justify-between  items-center overflow-hidden pl-5">
                         <div className="p-6">
                             <h2 className="text-2xl text-black font-semibold mb-2">{news.title}</h2>
                             <p className="text-gray-600 text-sm mb-4">{news.content}</p>
