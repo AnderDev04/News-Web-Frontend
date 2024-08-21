@@ -4,6 +4,7 @@ import { QueryClientProvider,QueryClient } from '@tanstack/react-query'
 import LoginPage from "./core/login/page";
 import HomePage from "./core/news/page";
 import DetailPage from "./core/news/detail/page";
+import GestorPage from "./core/admin/page";
 const queryClient = new QueryClient()
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
             <Route path={"/login"} element={<LoginPage />} />
             <Route path={"/"} element={<HomePage />} />
             <Route path={"/detalle/:id/"} element={<DetailPage />} />
+            <Route path={"/gestor/"} element={<GestorPage />} />
           </Routes>
         </Suspense>
       </Router>

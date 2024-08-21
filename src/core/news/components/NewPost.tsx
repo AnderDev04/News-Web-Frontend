@@ -35,7 +35,7 @@ export default function NewPost() {
 
   return (
     <div>
-        <button onClick={()=>handleOpen()} className=" bg-yellow-600  text-gray-100 rounded-lg p-1">
+        <button onClick={()=>handleOpen()} className=" bg-yellow-600  text-gray-100 rounded-lg p-2">
             Crear Post
         </button>
         <div className={`fixed inset-0 z-10 ${open ? '' : 'hidden'} bg-gray-500 bg-opacity-75`} aria-hidden="true">

@@ -53,6 +53,9 @@ export default function Navbar() {
             <div className="justify-end flex items-end">
                 <NewPost/>
             </div>
+            <div>
+                <Link to={'/gestor/'}>Gestion</Link>
+            </div>
         </div>
     )
     }

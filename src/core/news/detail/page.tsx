@@ -2,6 +2,9 @@ import { useParams } from 'react-router-dom';
 import TemplateLayout from '../../layout';
 import { useQuery } from '@tanstack/react-query';
 import { GetNewsById } from '../../api/news';
+import useAuthHeader from 'react-auth-kit/hooks/useAuthHeader';
+import EditarNew from '../components/EditarNew';
+import EditPost from '../components/EditarNew';
 
 export default function DetailPage() {
     const { id } = useParams();
@@ -11,6 +14,9 @@ export default function DetailPage() {
         queryFn: () => GetNewsById(id || '' as any),
         enabled: !!id,  // Solo ejecuta la consulta si `id` está disponible
     });
+
+    const token = useAuthHeader();
+
 
     if (isLoading) {
         return (
@@ -46,6 +52,15 @@ export default function DetailPage() {
         <TemplateLayout>
             <div className="max-w-4xl mx-auto p-16 ">
                 <div className="relative mb-6">
+                    <div>
+                        {
+                            token && (
+                                <div className="absolute top-4 right-4">
+                                    <EditPost />
+                                </div>
+                            )
+                        }
+                    </div>
                     <img
                         src={`http://127.0.0.1:8000/${post.image}`}
                         alt={post.title}
@@ -56,7 +71,7 @@ export default function DetailPage() {
                     </h1>
                 </div>
                 <div className="text-sm text-gray-500 mb-4">
-                    <span>Posted on {new Date(post.date).toLocaleDateString()}</span>
+                    <span>Posted on {new Date(post.created_at).toLocaleDateString()}</span>
                 </div>
                 <div className="text-gray-800 leading-relaxed">
                     {post.content}
