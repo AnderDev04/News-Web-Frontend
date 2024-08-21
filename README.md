@@ -1,50 +1,44 @@
-# React + TypeScript + Vite
+# Prueba Técnica
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## **Arquitectura de la Aplicación**
 
-Currently, two official plugins are available:
+- **Descripción General**:
+    - Utilizare la arquitectura MVC
+- Consideraciones:
+    - Utilizare PEP8: Que es PEP8?
+        - Es una guía de estilo para escribir código Python que sigue las mejores prácticas y convenciones de la comunidad.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Módulos:
 
-## Expanding the ESLint configuration
+1. **Módulo de Listar Noticias**
+    - **Descripción**: Este módulo va a listar todas las noticias que el Frontend obtiene del Backend
+2. **Módulo de Ver Detalle**
+    - **Descripción**: Este módulo permite ver los detalles de una noticia específica.
+3. **Módulo de Crear Noticia**
+    - **Descripción**: Este módulo permite crear nuevas noticias en la base de datos.
+4. **Módulo de Actualizar Noticia**
+    - **Descripción**: Este módulo permite actualizar una noticia ya existente.
+5. **Módulo de Eliminar Noticia**
+    - **Descripción**: Este módulo maneja la eliminación de noticias, tanto lógica como física en el back.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Documentación:
 
-- Configure the top-level `parserOptions` property like this:
+- Utilizare Swagger para documentar todos los endpoints del backend.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### Seguridad
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- **JWT Tokens**:
+    - **Propósito**: Implementar autenticación basada en tokens JWT para asegurar que solo los usuarios autenticados puedan realizar acciones específicas como crear, actualizar o eliminar noticias. para simular un CRM.
+    - **Implementación**:
+        - **Backend**: Utilizar `djangorestframework-simplejwt` para gestionar la autenticación y la emisión de tokens.
+        - **Frontend**: Almacenar y enviar el token JWT en los encabezados de las solicitudes API.
+- **Django CORS Headers**:
+    - **Propósito**: Permitir que mi api solo sea accesible por dominios en especifico
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Base de datos:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- Utilizaría PostgreSQL pero como no podre mostrarlo en vivo , lo realizare con SQLITE3 para que puedan verlo.
+
+### Rendimiento (Frontend):
+
+- Utilizare React, Tailwind, Typescript y React Query. Este ultimo para manejar peticiones asíncronas para actualizar datos en tiempo real.
