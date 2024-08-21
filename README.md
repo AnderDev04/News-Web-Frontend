@@ -1,5 +1,3 @@
-# Prueba Técnica
-
 ## **Arquitectura de la Aplicación**
 
 - **Descripción General**:
